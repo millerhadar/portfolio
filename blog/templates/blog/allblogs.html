@@ -20,7 +20,7 @@
 
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">Hadar</a>
+          <a class="navbar-brand" href="/">Hadar</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -32,8 +32,8 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% static 'me.png' %}">Resume</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%  url 'blogs' %}">Blog</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Blog</a>
               </li>
                 <li class="nav-item">
                 <a class="nav-link" href="/pols">Polls</a>
@@ -44,40 +44,24 @@
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Miller Hadar</h1>
-          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-          <p>
-            <a href="mailto:miller.hadar@gmail.com" class="btn btn-primary my-2">Mail Me</a>
-          </p>
+            <h1 class="text-center pt-3">Wellcome Blog</h1>
+            <br />
+            <h2> Latest Posts</h2>
+            <hr />
+
+           {% for blog in blogs.all %}
+               <a href="{{ blog.pk }}"><h3>{{ blog.title }}</h3></a>
+             {{ blog.my_pub_date }}
+               <br />
+               <img class="img-fluid" src="{{ blog.image.url }}" height="200" width="200" />
+                <br />
+               {{ blog.summary }}
+           {% endfor %}
+
+
         </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-           {%  for job in jobs.all %}
-
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="{{ job.image.url }}" alt="Card image cap">
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-
-                </div>
-              </div>
-            </div>
-
-            {% endfor %}
-
-          </div>
-        </div>
-      </div>
-
-    </main>
+     </main>
 
     <footer class="text-muted">
       <div class="container">

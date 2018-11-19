@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import include
 import jobs.views
 import pols.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',jobs.views.home,name='home'),
+    path('blog/', include('blog.urls')),
     path('pols/', pols.views.IndexView.as_view(), name='pols'),
     path('pols/<int:pk>/', pols.views.DetailView.as_view(), name='detail'),
     path('pols/<int:pk>/results/', pols.views.ResultsView.as_view(), name='results'),

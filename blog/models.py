@@ -23,4 +23,8 @@ class Blog(models.Model):
     publ_date = models.DateField()
     body = models.CharField(max_length=250)
     image = models.ImageField(upload_to='images/')
+    def summary(self):
+        return self.body[:50]
+    def my_pub_date(self):
+        return self.publ_date.strftime("%b %e %Y")
 
